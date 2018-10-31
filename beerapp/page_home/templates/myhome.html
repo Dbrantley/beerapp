@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="page-header">
+  <h1 style="font-family:'Times New Roman', Times, serif;" align="center">Craft Beer In Japan?嘘作るな！！</h1>
+</div>
+    <main role="main">
+      
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+      <div class="entry-content">
+          <div style="display: flex; justify-content: center;">
+            <img class="wp-image-91405 size-full" src="https://cdn.craftbeer.com/wp-content/uploads/what_is_craft_beer_hero.jpg" alt="What is Craft Beer" width="1200" height="600" srcset="https://cdn.craftbeer.com/wp-content/uploads/what_is_craft_beer_hero.jpg 1200w, https://cdn.craftbeer.com/wp-content/uploads/what_is_craft_beer_hero-768x384.jpg 768w" sizes="(max-width: 1200px) 100vw, 1200px" />
+          </div>
+      <p>&nbsp; After speaking with many of my pals from the states, one reoccuring question kept coming up.
+        "Where can I find good Craft Beer in Japan like in the states?" That's why I, the Beer Samurai, have decided to go on
+        a conquest around Japan to find the best tasting beers and post them here. That way, not only will my friends be happy,
+        but you also can enjoy the joy known as craft beer.
+      </p>
+      <hr>
+      <h1 style="font-family:'Times New Roman', Times, serif;" align="center">Craft Beers of The Week</h1>
+<p></p>
+    </div>
+
+      <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'beer/img/red_ale.jpg'%}" alt="Generic placeholder image" width="500" height="500">
+            <h2>Red Ale</h2>
+            <p> One of my personal Favorites</p>
+            <p><a class="btn btn-secondary" href="{% url 'beer_detail' 1 %}" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'beer/img/Baird-Angry-Boy-Brown-Ale-bottle.jpg'%}" alt="Generic placeholder image" width="500" height="500">
+            <h2>Angry Boy Brown Ale</h2>
+            <p>Are you an Ale Lover? 100% Customer Satisfaction Guaranteed this ale will make you the opposite of angry.</p>
+            <p><a class="btn btn-secondary" href="{% url 'beer_detail' 2 %}" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="{% static 'beer/img/shimaguni.jpg'%}" alt="Generic placeholder image" width="500" height="500">
+            <h2>Shimaguni Stout</h2>
+            <p>Hands Down One of the Best Stouts i've ever tasted.</p>
+            <p><a class="btn btn-secondary" href="{% url 'beer_detail' 3 %}" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Discover Breweries Near you. <span class="text-muted">Yes very wild, We know.</span></h2>
+            <p class="lead">Here are some breweries located near you. By the way your ip is {{ip}} and you live in {{country}}</p>
+          </div>
+          <div class="col-md-5">
+            <iframe width="500"
+            height="450"
+            frameborder="0"
+            style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key={{ api_key }}&q={{ latitude }},{{ longitude }}&zoom=8"
+            allowfullscreen></iframe>
+          </div>
+          <div style="height:100%; width: 100%;"> 
+            <div id="map"></div>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <!-- /END THE FEATURETTES -->
+
+      </div><!-- /.container -->
+
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2018 The Beer Samurai</p>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+{% endblock %}
+
+{% block javascript %}
+<script>
+function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap">
+</script>
+{% endblock %}
