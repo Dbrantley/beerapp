@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -134,3 +135,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'beerapp/staticcdn', )
 
 GOOGLE_API_KEY="AIzaSyDwl5CMAmjpSmvTlmIlDBLqdFq78JJRCNI"
 ACCESS_KEY="f7114bb87579fd61dd702ca214e9a81e"
+django_heroku.settings(locals())
